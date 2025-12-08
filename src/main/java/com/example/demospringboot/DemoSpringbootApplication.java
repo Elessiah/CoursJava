@@ -1,6 +1,8 @@
 package com.example.demospringboot;
 
 import com.example.demospringboot.service.BavardService;
+import com.example.demospringboot.service.EmailService;
+import com.example.demospringboot.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +17,7 @@ import java.io.Console;
 public class DemoSpringbootApplication {
 
     private BavardService bavardService;
+    private NotificationService notificationService;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoSpringbootApplication.class, args);
@@ -30,8 +33,15 @@ public class DemoSpringbootApplication {
         return this.bavardService.parler();
     }
 
+    @GetMapping("notif")
+    public String notif() {
+        this.notificationService.setMessageService(new EmailService());
+        return "notif";
+    }
+
     @Autowired
-    public DemoSpringbootApplication(BavardService bavardService) {
+    public DemoSpringbootApplication(BavardService bavardService,  NotificationService notificationService) {
         this.bavardService = bavardService;
+        this.notificationService = notificationService;
     }
 }
