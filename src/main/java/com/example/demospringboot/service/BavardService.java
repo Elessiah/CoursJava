@@ -1,15 +1,11 @@
 package com.example.demospringboot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 @Component
 public class BavardService {
-    private String nom;
-
-    public BavardService(String nom) {
-        this.nom = nom;
-    }
+    private String nom = "Default";
 
     public void setNom(String newName) {
         this.nom = newName;
@@ -19,7 +15,12 @@ public class BavardService {
         return (this.nom);
     }
 
-    public void parler() {
-        System.out.println("");
+    public String parler() {
+        return(nom + " " + this.getClass().getSimpleName());
+    }
+
+    @PostConstruct
+    private void PostConstruct() {
+        System.out.println("Bavard service is started");
     }
 }
