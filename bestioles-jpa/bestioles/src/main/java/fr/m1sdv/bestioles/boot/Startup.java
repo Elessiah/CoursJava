@@ -1,5 +1,7 @@
 package fr.m1sdv.bestioles.boot;
 
+import fr.m1sdv.bestioles.model.Animal;
+import fr.m1sdv.bestioles.model.Species;
 import fr.m1sdv.bestioles.repositories.AnimalRepository;
 import fr.m1sdv.bestioles.repositories.PersonRepository;
 import fr.m1sdv.bestioles.repositories.RoleRepository;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.util.Set;
 
 @Component
 public class Startup implements CommandLineRunner {
@@ -33,5 +37,23 @@ public class Startup implements CommandLineRunner {
         System.out.println("Retrieving persons : " + this.personRepository.findAll());
         System.out.println("Retrieving roles : " + this.roleRepository.findAll());
         System.out.println("Retrieving species : " + this.speciesRepository.findAll());
+
+        System.out.println("Count animal before insert : " + this.animalRepository.count());
+
+        Animal animal = new Animal();
+        animal.setName("Coleen");
+        animal.setColor("orange");
+        animal.setSex("female");
+        Iterable<Species> species = this.speciesRepository.findAll();
+        animal.setSpecies(species.iterator().next());
+        animalRepository.save(animal);
+
+        System.out.println("Inserting animal : " + animal.getName());
+        System.out.println("Count animal after insert : " + this.animalRepository.count());
+
+        animalRepository.delete(animal);
+
+        System.out.println("Deleting animal : " + animal.getName());
+        System.out.println("Count animal after delete : " + this.animalRepository.count());
     }
 }

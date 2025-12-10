@@ -16,6 +16,7 @@ public class Animal {
     private String name;
     @Column(columnDefinition = "varchar(255)")
     private String sex;
+
     @ManyToOne
     @JoinColumn(name="species_id")
     private Species species;
@@ -56,4 +57,13 @@ public class Animal {
     public String getSex() {
         return this.sex;
     }
+
+    public Species getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(Species species) {
+        this.species = species;
+    }
+
 }
