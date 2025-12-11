@@ -104,4 +104,12 @@ public class Person {
     public void setAnimals(Set<Animal> animals) {
         this.animals = animals;
     }
+
+    public void setActive(boolean active) {
+        this.active = (byte) (active ? 1 : 0);
+    }
+
+    public boolean isActive() {
+        return active == 1;
+    }
 }

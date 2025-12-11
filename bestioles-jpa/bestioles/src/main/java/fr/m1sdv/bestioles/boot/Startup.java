@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -34,6 +35,7 @@ public class Startup implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         System.out.println("\u001B[34mRetrieving animals : \u001B[0m" + this.animalRepository.findAll());
         System.out.println("\u001B[34mRetrieving persons : \u001B[0m" + this.personRepository.findAll());
@@ -120,5 +122,8 @@ public class Startup implements CommandLineRunner {
 
 
         System.out.println("\u001B[34mCheck if \u001B[0mMax\u001B[34m has owner : \u001B[0m" + animalRepository.hasOwner(animal));
+
+        personRepository.generatePerson(5);
+        personRepository.deleteWithoutAnimals();
     }
 }

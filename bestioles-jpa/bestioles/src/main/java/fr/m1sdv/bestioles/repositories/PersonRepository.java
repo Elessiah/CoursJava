@@ -8,9 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface PersonRepository extends JpaRepository<Person, Integer> {
+public interface PersonRepository extends JpaRepository<Person, Integer>, PersonRepositoryCustom {
     List<Person> findAllByFirstnameOrLastname(String firstname, String lastname);
     List<Person> findAllByAgeGreaterThanEqual(int age);
+
 
     @Query("from Person WHERE age between :agemin and :agemax")
     List<Person> findAllByAgeBetween(@Param("agemin") int age, @Param("agemax") int agemax);
