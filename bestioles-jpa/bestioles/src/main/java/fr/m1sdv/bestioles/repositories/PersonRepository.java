@@ -12,6 +12,7 @@ public interface PersonRepository extends JpaRepository<Person, Integer>, Person
     List<Person> findAllByFirstnameOrLastname(String firstname, String lastname);
     List<Person> findAllByAgeGreaterThanEqual(int age);
 
+    void deleteAllByFirstname(String firstname);
 
     @Query("from Person WHERE age between :agemin and :agemax")
     List<Person> findAllByAgeBetween(@Param("agemin") int age, @Param("agemax") int agemax);

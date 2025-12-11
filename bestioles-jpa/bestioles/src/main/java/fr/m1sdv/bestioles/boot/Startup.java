@@ -125,5 +125,9 @@ public class Startup implements CommandLineRunner {
 
         personRepository.generatePerson(5);
         personRepository.deleteWithoutAnimals();
+
+        System.out.println("\u001B[34mCount persons before delete : \u001B[0m" + personRepository.count());
+        personRepository.deleteAllByFirstname("Sophie");
+        System.out.println("\u001B[34mCount persons after delete : \u001B[0m" + personRepository.count());
     }
 }
