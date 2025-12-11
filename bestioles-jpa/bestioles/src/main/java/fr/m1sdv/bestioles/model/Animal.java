@@ -62,6 +62,14 @@ public class Animal {
         return species;
     }
 
+    public Set<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(Set<Person> persons) {
+        this.persons = persons;
+    }
+
     public void setSpecies(Species species) {
         this.species = species;
     }

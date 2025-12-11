@@ -86,5 +86,39 @@ public class Startup implements CommandLineRunner {
         for (Animal fanimal : animals) {
             System.out.println("\u001B[34mRetrieved : \u001B[0m" + fanimal);
         }
+
+        System.out.println("\u001B[34mFetching Species Order by common name ascendant : \u001B[0m");
+        List<Species> speciesList = speciesRepository.findAllOrderByCommonNameAsc();
+        for (Species species : speciesList) {
+            System.out.println("\u001B[34mRetrieved : \u001B[0m" + species);
+        }
+
+        System.out.println("\u001B[34mFetching Species : \u001B[0m Chat");
+        speciesList = speciesRepository.findAllByCommonName("Chat");
+        for (Species species : speciesList) {
+            System.out.println("\u001B[34mRetrieved : \u001B[0m" + species);
+        }
+
+        System.out.println("\u001B[34mFetching Persons who has : \u001B[0m Chat");
+        animal = animalRepository.findByName("Max");
+        personList = personRepository.findAllByAnimal(animal);
+        for (Person person : personList) {
+            System.out.println("\u001B[34mRetrieved : \u001B[0m" + person);
+        }
+
+        System.out.println("\u001B[34mFetching Persons with age between : \u001B[0m40 et  50");
+        personList = personRepository.findAllByAgeBetween(40, 50);
+        for (Person person : personList) {
+            System.out.println("\u001B[34mRetrieved : \u001B[0m" + person);
+        }
+
+        System.out.println("\u001B[34mFetching Animals link to at least one person : \u001B[0m");
+        animals = animalRepository.findAllWithPersons();
+        for (Animal fanimal : animals) {
+            System.out.println("\u001B[34mRetrieved : \u001B[0m" + fanimal);
+        }
+
+
+        System.out.println("\u001B[34mCheck if \u001B[0mMax\u001B[34m has owner : \u001B[0m" + animalRepository.hasOwner(animal));
     }
 }
