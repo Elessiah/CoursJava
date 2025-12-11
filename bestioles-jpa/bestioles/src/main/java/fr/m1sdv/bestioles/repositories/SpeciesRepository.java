@@ -1,7 +1,12 @@
 package fr.m1sdv.bestioles.repositories;
 
 import fr.m1sdv.bestioles.model.Species;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SpeciesRepository extends CrudRepository<Species, Integer> {
+import java.util.List;
+
+public interface SpeciesRepository extends JpaRepository<Species, Integer> {
+    Species findFirstByCommonName(String commonName);
+    List<Species> findAllByLatinNameIgnoreCase(String latinName);
+
 }

@@ -9,18 +9,18 @@ public class Species {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(columnDefinition = "varchar(50)", nullable = false)
-    private String common_name;
+    @Column(name="common_name", columnDefinition = "varchar(50)", nullable = false)
+    private String commonName;
 
-    @Column(columnDefinition = "varchar(200)", nullable = false)
-    private String latin_name;
+    @Column(name= "latin_name", columnDefinition = "varchar(200)", nullable = false)
+    private String latinName;
 
     @Override
     public String toString() {
         return "Species{" +
                 "id=" + id +
-                ", common_name='" + common_name + '\'' +
-                ", latin_name='" + latin_name + '\'' +
+                ", common_name='" + commonName + '\'' +
+                ", latin_name='" + latinName + '\'' +
                 '}';
     }
 }
