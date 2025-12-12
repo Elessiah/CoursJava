@@ -33,7 +33,7 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
             person.setFirstname(names.get(random.nextInt(names.size())));
             person.setLastname(names.get(random.nextInt(names.size())));
             person.setAge(random.nextInt(100));
-            person.setLogin(names.get(random.nextInt(names.size())).toLowerCase() + random.nextInt(names.size() + person.getAge()));
+            person.setLogin(names.get(random.nextInt(names.size())).toLowerCase() + random.nextInt(99999));
             person.setMdp(names.get(random.nextInt(names.size())));
             person.setActive(true);
             em.persist(person);

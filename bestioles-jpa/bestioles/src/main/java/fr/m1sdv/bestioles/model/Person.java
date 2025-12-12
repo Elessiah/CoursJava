@@ -1,5 +1,6 @@
 package fr.m1sdv.bestioles.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -39,6 +40,7 @@ public class Person {
             )
     private Set<Role> roles;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name="person_animals",
